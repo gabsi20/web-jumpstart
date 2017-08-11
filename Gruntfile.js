@@ -24,10 +24,17 @@ module.exports = function(grunt) {
     },
     copy: {
       main: {
-        expand: true,
-        cwd: 'src',
-        src: ['**/*.{html, php}'],
-        dest: 'dist/',
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.{html,php}'],
+          dest: 'dist/'
+        }, {
+          expand: true,
+          cwd: 'src',
+          src: ['assets/**/*'],
+          dest: 'dist/'
+        }]
       },
     },
     clean: ['./dist/**/*', './dest/**/*'],
@@ -56,6 +63,10 @@ module.exports = function(grunt) {
       },
       html: {
         files: ["./src/**/*.html", './src/**/*.php'],
+        tasks: ["copy"]
+      },
+      assets: {
+        files: ["./src/assets/**/*"],
         tasks: ["copy"]
       },
       images: {

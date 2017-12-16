@@ -2,12 +2,12 @@
 
 #### Installation
 ```
-yarn install
+npm install
 ```
 
-#### Watchtask
+#### Watchtask with Livereload
 ```
-grunt
+npm start
 ```
 
 #### Cleaning

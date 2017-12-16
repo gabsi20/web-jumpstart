@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = function(grunt) {
   grunt.initConfig({
     browserify: {
@@ -72,7 +73,13 @@ module.exports = function(grunt) {
       images: {
         files: ["./src/**/*.{png,jpg,gif}"],
         tasks: ["imagemin"]
-      }
+      },
+      livereload: {
+        // Here we watch the files the sass task will compile to
+        // These files are sent to the live reload server after sass compiles to them
+        options: { livereload: true },
+        files: ['dist/**/*'],
+      },
     }
   });
 
@@ -83,6 +90,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-  grunt.registerTask("default", ["watch"]);
+  grunt.registerTask("default", ["copy", "browserify", "sass", "imagemin","watch"]);
   grunt.registerTask("build", ["copy", "browserify", "sass", "imagemin"]);
 };
